@@ -10,16 +10,24 @@
   </head>
 
   <body>
+    <header class="header">
+      <p>Facebook_clone</p>
+    </header>
+
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>
     <% end %>
     <% if logged_in? %>
-      <%= link_to "Profile", user_path(current_user.id) %>
-      <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+      <span class="button"><%= link_to "プロフィール", user_path(current_user.id) %></span>
+      <span class="button"><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></span>
     <% else %>
-      <%= link_to "Sign up", new_user_path %>
-      <%= link_to "Login", new_session_path %>
+      <span class="button"><%= link_to "新規アカウント作成", new_user_path %></span>
+      <span  class="button"><%= link_to "ログイン", new_session_path %></span>
     <% end %>
     <%= yield %>
+
+    <footer class="footer">
+      <p class="copy">&copy;Facebook_clone</p>
+    </footer>
   </body>
 </html>
